@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int v[20], i, N;
+    float m = 0;
+    printf("insira os valores do vetor: ");
+
+    for (i = 0; i < 20; i++)
+    {
+        scanf("%d", &N);
+        if (N == 0) break;
+        v[i] = N;
+    }
+// v[20] = {2, 7, 11, 12, 18, 0};
+// v[20] = {6, 9, 0};
+    if (i % 2 == 0) //par
+    {
+        m = (v[i / 2 - 1] + v[i / 2]) / 2.0; // i = 1; m =  
+    }
+    else //ímpar
+    {
+        m = v[i / 2]; // i = 4; m = v[4 / 2] = v[2] = 11;
+    }
+    printf("mediana: %f\n", m);
+    return 0;
+
+
+
+
+
+}
