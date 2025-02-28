@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+float mediavet(float v[], int dim);
+float stdvet(float v[], int dim);
+void supmedia(float v[], int dim, float v2[], int *dim2);
+
+int main()
+{
+    float A[7], B[7], media, desvio;
+    int i, d;
+
+    for (i = 0; i < 7; i++)
+    {
+    printf("A[%d]: ", i);
+    scanf("%f", &A[i]);
+    }
+    media = mediavet(A, 7);
+    desvio = stdvet(A, 7);
+    printf("media: %f    desvio: %f\n", media, desvio);
+
+    printf("B: %p\n", B); //nome do vetor já é um endereço, logo, não precisa do operador &. Alocou espaço de memória pro ENDEREÇO de B.
+    printf("Endereço de d: %p\n", &d);
+
+    supmedia(A, 7, B, &d);
+    printf("quantidade: %d\n", d);
+
+    for (i = 0; i < d; i++)
+        printf("B[%d]: %f\n", i, B[i]);
+    return 0;
+}
+//função para calcular a ḿédia
+float mediavet(float v[], int dim)
+{
+    float soma;
+    int i;
+
+    for (soma = 0, i = 0; i < dim; i++)
+        soma += v[i];
+    return soma / dim;
+}
+
+//calcula desvio padrão
+float stdvet(float v[], int dim)
+{
+    float soma, m;
+    int i;
+    m = mediavet(v, dim); //chama função media dentro da função desvio.
+
+    for (soma = 0, i = 0; i < dim; i++)
+        soma += (v[i] - m) * (v[i] - m); //calculo do desvio padrão
+    return sqrt(soma / dim);
+}
+
+void supmedia(float v[], int dim, float v2[], int *dim2) //dim2 é ponteiro pra inteiro. Ponteiro guarda endereço de memória de um objeto.
+{
+    float m = mediavet(v, dim);
+    int i, j;
+
+    for (j = 0, i = 0; i < dim; i++)
+        if (v[i] > m)
+        {
+            v2[j] = v[i];
+            j++;
+        }
+    *dim2 = j;
+}
