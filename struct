@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct estudante //struct é um registro. Esse molde da struct não aloca memória
+//esqueleto da struct
+{
+    char nome[50];
+    int idade;
+    int ano_ingresso;
+    char matricula[50];
+    float CRL;
+};
+
+int main()
+{  
+    struct estudante aluno; //declaro a struct. Agora aloca memória.
+    printf("nome: ");
+    fgets(aluno.nome, 50, stdin);
+    printf("idade: ");
+    scanf("%d", &aluno.idade);//ter acesso ao membro da struct com variável.membro
+    printf("ano de ingresso: ");
+    scanf("%d", &aluno.ano_ingresso);
+    getchar();
+    printf("Matrícula: ");
+    fgets(aluno.matricula, 20, stdin);
+    printf("Rendimento: ");
+    scanf("%f", &aluno.CRL);
+
+    printf("%s", &aluno.nome);
+    printf("%d anos\n", aluno.idade);
+    printf("Matrícula: %s", aluno.matricula);
+    printf("Ano de ingresso: %d", aluno.ano_ingresso);
+    printf("CRL: %f", aluno.CRL);
+    return 0;
+}
