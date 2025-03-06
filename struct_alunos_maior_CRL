@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+struct estudante //struct é um registro. Esse molde da struct não aloca memória
+//esqueleto da struct
+{
+    char nome[50];
+    int idade;
+    int ano_ingresso;
+    char matricula[50];
+    float CRL;
+};
+
+int main()
+{
+    setlocale(LC_ALL, "Portuguese");
+    struct estudante aluno; //declaro a struct. Agora aloca memória.
+    struct estudante vet_aluno[3]; //pra caso eu tenha mais de um estudante para analisar
+    int i;
+    float maior_crl = 0.0;
+
+    for (i = 0; i < 3; i++)
+    {
+    printf("nome: ");
+    fgets(vet_aluno[i].nome, 50, stdin);//ler os dados de cada índice
+
+    printf("idade: ");
+    scanf("%d", &vet_aluno[i].idade);//ter acesso ao membro da struct com variável.membro
+
+    printf("ano de ingresso: ");
+    scanf("%d", &vet_aluno[i].ano_ingresso);
+    getchar(); //limpa o teclado. Anula possibilidade de sobrar algum caractere após o ENTER.
+
+    printf("Matrícula: ");
+    fgets(aluno.matricula, 20, stdin);
+
+    printf("Rendimento: ");
+    scanf("%f", &vet_aluno[i].CRL);
+    getchar();
+
+    if (vet_aluno[i].CRL > maior_crl)
+        maior_crl = vet_aluno[i].CRL;
+    }
+    
+    for (i = 0; i < 3; i++)
+    {
+    printf("%s", &vet_aluno[i].nome);
+    printf("%d anos\n", vet_aluno[i].idade);
+    printf("Matrícula: %s", vet_aluno[i].matricula);
+    printf("Ano de ingresso: %d\n", vet_aluno[i].ano_ingresso);
+    printf("CRL: %.2f\n", vet_aluno[i].CRL);
+    }
+    //exibir dados dos alunos com maior CRL:
+    printf("\nAluno com maior CRL: %.2f\n", maior_crl);
+    printf("Nome: %s", vet_aluno[i].);
+    return 0;
+}
